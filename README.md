@@ -19,10 +19,10 @@ Please follow these general steps:
 ## Feature list
 | Feature                 | Comment                                       | Status             |
 |-------------------------|-----------------------------------------------|--------------------|
-| Command Execution       | Execute basic shell commands.                  | [x]          |
-| Pipe handling        | Facilitate command pipelines for efficient communication            | [x]       |
+| Command Execution       | Execute basic shell commands.                  | ✅          |
+| Pipe handling        | Facilitate command pipelines for efficient communication            | ✅       |
 
 
 **Legend:**
-- [ ] In Progress: Feature partially implemented.
-- [x] Done: Feature successfully implemented.
+- ⬜ In Progress: Feature partially implemented.
+- ✅ Done: Feature successfully implemented.
