@@ -1,5 +1,13 @@
 # Simple-Shell
 This project is a simple shell implementation in C, designed for OS course to understand the fundamentals of operating systems and shell programming.
+
+## How to use?
+To utilize the Simple-Shell, follow these steps:
+```
+$ sudo apt install libreadline-dev
+$ gcc shell.c -lreadline -o shell
+$ ./shell
+```
 ## How to Contribute?
 ###  1- Explore the Project:
 Take a moment to explore the current state of the shell by reviewing the [feature list](#feature-list). If you have ideas for improvement that are not yet implemented or wish to suggest features inspired by your experience with Linux shells, reach out to me to discuss and potentially add them to the feature list.
