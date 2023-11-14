@@ -29,7 +29,7 @@ Please follow these general steps:
 |-------------------------|-----------------------------------------------|--------------------|
 | Command Execution       | Execute basic shell commands.                  | ✅          |
 | Pipe handling        | Facilitate command pipelines for efficient communication            | ✅       |
-
+| Alias Support        | Enable users to define custom aliases for commands.        | ⬜       |
 
 **Legend:**
 - ⬜ In Progress: Feature partially implemented.
