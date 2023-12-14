@@ -30,6 +30,7 @@ Please follow these general steps:
 | Command Execution       | Execute basic shell commands.                  | ✅          |
 | Pipe handling        | Facilitate command pipelines for efficient communication            | ✅       |
 | Alias Support        | Enable users to define custom aliases for commands.        | ⬜       |
+| Backslash Character  | Preserve the literal value of the following charactor, unless it is an exception (like \n) or a special shell character.         | ⬜       |
 
 **Legend:**
 - ⬜ In Progress: Feature partially implemented.
