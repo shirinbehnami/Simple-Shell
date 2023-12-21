@@ -15,12 +15,35 @@ void init_shell()
 	clear(); 
 } 
 
+char* handleBackSlash(char* buf, char lastChar) {
+	char* line;
+	int len;
+	int i = 0;
+	while(lastChar == '\\') {
+		line = readline("\n> ");
+		strcat(buf, line);
+		len = strlen(line);
+		lastChar = line[len - 1];
+	}
+	
+	while(buf[i] != '\0') {
+		if (buf[i] == '\\') {
+			buf[i] = ' ';
+		}
+		i++;
+	}
+	return buf;
+}
+
 // Take Input 
 int takeInput(char* str) 
 { 
 	char* buf; 
+	buf = readline("\n$ ");
+	size_t len = strlen(buf);
+    char lastChar = buf[len - 1];
+	buf = handleBackSlash(buf, lastChar);
 
-	buf = readline("\n$  "); 
 	if (strlen(buf) != 0) { 
 		add_history(buf); 
 		strcpy(str, buf); 
