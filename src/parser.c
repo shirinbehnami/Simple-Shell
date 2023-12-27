@@ -9,6 +9,7 @@ int parsePipe(char* str, char** strpiped)
 { 
 	int i; 
 	for (i = 0; i < 2; i++) { 
+		strpiped[i] = NULL;
 		strpiped[i] = strsep(&str, "|"); 
 		if (strpiped[i] == NULL) 
 			break; 
