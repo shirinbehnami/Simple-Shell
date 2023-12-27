@@ -24,12 +24,36 @@ void init_shell()
 	sleep(1); 
 	clear(); 
 } 
+/* A static variable for holding the line. */
+static char *line_read = (char *)NULL;
 
+/* Read a string, and return a pointer to it.
+   Returns NULL on EOF. */
+static char * rl_gets ()
+{
+  /* If the buffer has already been allocated,
+     return the memory to the free pool. */
+  if (line_read)
+    {
+      free (line_read);
+      line_read = (char *)NULL;
+    }
+
+  /* Get a line from the user. */
+  line_read = readline ("\n$  ");
+
+  /* If the line has any text in it,
+     save it on the history. */
+  if (line_read && *line_read)
+    add_history (line_read);
+
+  return (line_read);
+}
 int takeInput(char* str) 
 { 
 	char* buf; 
 
-	buf = readline("\n$  "); 
+	buf = rl_gets(); 
 	if (strlen(buf) != 0) { 
 		add_history(buf); 
 		strcpy(str, buf); 
