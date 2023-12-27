@@ -1,9 +1,10 @@
+
 #include<readline/readline.h> 
 #include<readline/history.h> 
 
-#include "parser.c"
-#include "execFunc.c"
-#include "builtInCmd.c"
+#include "parser.h"
+#include "execFunc.h"
+#include "builtInCmd.h"
  
 
 int processString(char* str, char** parsed, char** parsedpipe) 

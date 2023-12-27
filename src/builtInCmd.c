@@ -1,7 +1,17 @@
-// Clearing the shell 
-#define clear() printf("\033[H\033[J") 
 
-// Greeting shell during startup 
+#include<readline/readline.h> 
+#include<readline/history.h> 
+#include <stdio.h> 
+#include <string.h> 
+#include <stdlib.h> 
+#include<unistd.h> 
+#include<sys/types.h> 
+#include<sys/wait.h> 
+
+#include "parser.h"
+#include "builtInCmd.h"
+#include "execFunc.h"
+
 void init_shell() 
 { 
 	clear(); 
@@ -15,7 +25,6 @@ void init_shell()
 	clear(); 
 } 
 
-// Take Input 
 int takeInput(char* str) 
 { 
 	char* buf; 
@@ -30,7 +39,6 @@ int takeInput(char* str)
 	} 
 } 
 
-// Print Current Directory. 
 void printDir() 
 { 
 	char cwd[1024]; 
@@ -39,7 +47,6 @@ void printDir()
 } 
 
 
-// Help command builtin 
 void openHelp() 
 { 
 	puts("\n...Use the shell at your own risk..."
@@ -54,7 +61,6 @@ void openHelp()
 	return; 
 } 
 
-// Function to execute builtin commands 
 int ownCmdHandler(char** parsed) 
 { 
 	int NoOfOwnCmds = 4, i, switchOwnArg = 0; 
