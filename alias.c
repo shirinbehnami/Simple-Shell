@@ -119,7 +119,7 @@ int aliasCommand(char** args,int command){
 		
 		//check syntax
 		if(sizeof(args)/sizeof(args[0])!=1){
-			printf("Wrong syntax\nto create an alias use this format:  alias alias_name=\"command\"\n");
+			printf("Wrong syntax\nto create an alias use this format:  alias alias_name=command\n");
 		}
 		  		
 		else{
