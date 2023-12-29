@@ -22,7 +22,9 @@ int processString(char* str, char** parsed, char** parsedpipe)
 		parseSpace(strpiped[0], parsed); 
 		parseSpace(strpiped[1], parsedpipe); 
 
-	} else {
+	}
+       	//check if its alias related command then specify and parse the command	
+	else {
 	        char *aliasSubstring = strstr(str, "alias");
 		char *equalSign = strchr(str, '=');
 		if(aliasSubstring!=NULL){
@@ -41,6 +43,8 @@ int processString(char* str, char** parsed, char** parsedpipe)
 
 	if (ownCmdHandler(parsed)) 
 		return 0; 
+
+	//run the alias handler if the command with alias :)
 	else if(alias){
 		aliasCommand(parsed,alias);
 		return 0;
@@ -57,7 +61,6 @@ int main()
 	Node** table = get_table();
 	init_shell(); 
 	
-	insert(table, "ll","ls -l");
 
 	while (1) { 
 		printDir(); 
@@ -67,12 +70,15 @@ int main()
 		
 		execFlag = processString(inputString,parsedArgs,parsedArgsPiped);
 
+
+		//check if the command is aliased before using the hash table
 		char* aliasCommand = get(table,parsedArgs[0]);
 		if(aliasCommand){
 			memcpy(inputString, aliasCommand, sizeof(inputString));
 		
+			//reprocces the string with the key value
 			execFlag = processString(inputString, parsedArgs, parsedArgsPiped);  
-	}
+		}
 		
 
 		// Execute 

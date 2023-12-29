@@ -4,11 +4,12 @@
 
 
 #define MaxSize 307
-
+#define MAXKEY 30
+#define MAXVALUE 100
 
 typedef struct Node{
-	char* key;
-	char* value;
+	char key[MAXKEY];
+	char value[MAXVALUE];
 	struct Node* next;
 
 } Node;
@@ -43,8 +44,8 @@ void insert(Node** hash_table,char* key, char* value){
 
 	//creating the node for the key/value pair
 	Node* node = (Node*)malloc(sizeof(Node)); 
-	node->key = key;
-	node->value = value;
+	strncpy(node->key, key, sizeof(node->key) - 1);
+        strncpy(node->value, value, sizeof(node->value) - 1);
 	node->next = NULL;
 	
 	//insert the pair into the table if the index is empty(no collision)
@@ -109,21 +110,15 @@ void removeKey(Node** hash_table,char* key){
 
 
 
-
+//alias handler function the commands and alias or unalias commnads will be passed here and the function will check wich function to call
 int aliasCommand(char** args,int command){
 
-	//printf("%s\t\t\t\n",args[0]);
-	
-	//printf("%d",strcmp(args[0],"alias"));
 
-//	char *equalSign = strchr(str, '=');
-
-	//if(strcmp(args[0],"lias")){
-//	if(equalSign!=NULL){
+	//alias command
 	if(command==1){
-		if(sizeof(args)/sizeof(args[0])!=2){
-			printf("%d\n",sizeof(args)/sizeof(args[0]));
-			printf("%s\t%s\t%s\t%s\n",args[0],args[1],args[2],args[3]);
+		
+		//check syntax
+		if(sizeof(args)/sizeof(args[0])!=1){
 			printf("Wrong syntax\nto create an alias use this format:  alias alias_name=\"command\"\n");
 		}
 		  		
@@ -132,24 +127,20 @@ int aliasCommand(char** args,int command){
 		}
 
 
-		printf("%s\t\t\t%s\t\t\t%s\n",args[0],args[1],args[2]);
-		insert(get_table(),args[1],args[2]);
-		printf("%s\n",get(get_table(),args[1]));
 	}
 	
 	
-	//elseif(strcmp(args[0],"nalias")){
+	//unalias command
 	else{
-	/*
-		if(sizeof(args)/sizeof(args[0])!=2){
+	
+		//check syntax
+		if(sizeof(args)/sizeof(args[0])!=1){
 			printf("Wrong syntax\nto remove an alias use this format: unaliase alias_namei\n");
-			printf("%s\t\t\t%s\t\t\t%s",args[0],args[1],args[2]);
 		}
 		else{
 			removeKey(get_table(),args[1]);
 		}	
-		*/
-		removeKey(get_table(),args[1]);
+	
 	}
 	
 
