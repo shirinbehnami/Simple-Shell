@@ -37,6 +37,7 @@ void parseSpace(char* str, char** parsed)
 	} 
 }
 
+/*
 void parseEquilSign(char* str, char** parsed){
 	
 	for(int i=0;i<MAXLIST;i++){
@@ -48,5 +49,22 @@ void parseEquilSign(char* str, char** parsed){
 			i--;
 	}
 	
+}
+*/
+
+void parseEqualSign(char* str, char** parsed){
+        char * sign[MAXCOM];
+
+        for(int i=0;i<MAXLIST;i++){
+                sign[i] = strsep(&str, "=");
+
+                if(sign[i] == NULL)
+                        break;
+                if(strlen(sign[i]) == 0)
+                        i--;
+        }
+        parseSpace(sign[0],parsed);
+        parsed[2] = sign[1];
+//      strcpy(parsed[2],sign[1]);
 }
 

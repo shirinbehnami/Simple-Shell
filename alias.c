@@ -110,7 +110,51 @@ void removeKey(Node** hash_table,char* key){
 
 
 
+int aliasCommand(char** args,int command){
 
+	//printf("%s\t\t\t\n",args[0]);
+	
+	//printf("%d",strcmp(args[0],"alias"));
+
+//	char *equalSign = strchr(str, '=');
+
+	//if(strcmp(args[0],"lias")){
+//	if(equalSign!=NULL){
+	if(command==1){
+		if(sizeof(args)/sizeof(args[0])!=2){
+			printf("%d\n",sizeof(args)/sizeof(args[0]));
+			printf("%s\t%s\t%s\t%s\n",args[0],args[1],args[2],args[3]);
+			printf("Wrong syntax\nto create an alias use this format:  alias alias_name=\"command\"\n");
+		}
+		  		
+		else{
+			insert(get_table() ,args[1], args[2]);
+		}
+
+
+		printf("%s\t\t\t%s\t\t\t%s\n",args[0],args[1],args[2]);
+		insert(get_table(),args[1],args[2]);
+		printf("%s\n",get(get_table(),args[1]));
+	}
+	
+	
+	//elseif(strcmp(args[0],"nalias")){
+	else{
+	/*
+		if(sizeof(args)/sizeof(args[0])!=2){
+			printf("Wrong syntax\nto remove an alias use this format: unaliase alias_namei\n");
+			printf("%s\t\t\t%s\t\t\t%s",args[0],args[1],args[2]);
+		}
+		else{
+			removeKey(get_table(),args[1]);
+		}	
+		*/
+		removeKey(get_table(),args[1]);
+	}
+	
+
+	return 0;
+}
 
 
                                  
