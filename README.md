@@ -29,7 +29,7 @@ Please follow these general steps:
 |-------------------------|-----------------------------------------------|--------------------|
 | Command Execution       | Execute basic shell commands.                  | ✅          |
 | Pipe handling        | Facilitate command pipelines for efficient communication            | ✅       |
-| Alias Support        | Enable users to define custom aliases for commands.        |       |
+| Alias Support        | Enable users to define custom aliases for commands.        | ⬜       |
 | Backslash Character  | Preserve the literal value of the following character, unless it is an exception (like \n) or a special shell character.         | ⬜       |
 | MultiPipe Integration        | Generalize the pipeline to execute multiple pipes in a single input line.        | ⬜       |
 | Standard project structure        |  Refactor some parts and Add separate header files and Makefile       | ⬜       |
