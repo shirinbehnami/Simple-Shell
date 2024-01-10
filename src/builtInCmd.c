@@ -1,7 +1,17 @@
-// Clearing the shell 
-#define clear() printf("\033[H\033[J") 
 
-// Greeting shell during startup 
+#include<readline/readline.h> 
+#include<readline/history.h> 
+#include <stdio.h> 
+#include <string.h> 
+#include <stdlib.h> 
+#include<unistd.h> 
+#include<sys/types.h> 
+#include<sys/wait.h> 
+
+#include "parser.h"
+#include "builtInCmd.h"
+#include "execFunc.h"
+
 void init_shell() 
 { 
 	clear(); 
@@ -14,13 +24,36 @@ void init_shell()
 	sleep(1); 
 	clear(); 
 } 
+/* A static variable for holding the line. */
+static char *line_read = (char *)NULL;
 
-// Take Input 
+/* Read a string, and return a pointer to it.
+   Returns NULL on EOF. */
+static char * rl_gets ()
+{
+  /* If the buffer has already been allocated,
+     return the memory to the free pool. */
+  if (line_read)
+    {
+      free (line_read);
+      line_read = (char *)NULL;
+    }
+
+  /* Get a line from the user. */
+  line_read = readline ("\n$  ");
+
+  /* If the line has any text in it,
+     save it on the history. */
+  if (line_read && *line_read)
+    add_history (line_read);
+
+  return (line_read);
+}
 int takeInput(char* str) 
 { 
 	char* buf; 
 
-	buf = readline("\n$  "); 
+	buf = rl_gets(); 
 	if (strlen(buf) != 0) { 
 		add_history(buf); 
 		strcpy(str, buf); 
@@ -30,7 +63,6 @@ int takeInput(char* str)
 	} 
 } 
 
-// Print Current Directory. 
 void printDir() 
 { 
 	char cwd[1024]; 
@@ -39,7 +71,6 @@ void printDir()
 } 
 
 
-// Help command builtin 
 void openHelp() 
 { 
 	puts("\n...Use the shell at your own risk..."
@@ -54,7 +85,6 @@ void openHelp()
 	return; 
 } 
 
-// Function to execute builtin commands 
 int ownCmdHandler(char** parsed) 
 { 
 	int NoOfOwnCmds = 4, i, switchOwnArg = 0; 

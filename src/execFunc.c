@@ -1,11 +1,12 @@
+
 #include<stdio.h> 
 #include<string.h> 
 #include<stdlib.h> 
 #include<unistd.h> 
 #include<sys/types.h> 
 #include<sys/wait.h> 
+#include "execFunc.h"
 
-// Function where the system command is executed 
 void execArgs(char** parsed) 
 { 
 	pid_t pid = fork(); 
@@ -24,7 +25,6 @@ void execArgs(char** parsed)
 	} 
 } 
 
-// Function where the piped system commands is executed 
 void execArgsPiped(char** parsed, char** parsedpipe) 
 { 
 	int pipefd[2];

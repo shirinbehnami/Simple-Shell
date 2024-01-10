@@ -4,8 +4,8 @@ This project is a simple shell implementation in C, designed for OS course to un
 ## How to use?
 To utilize the Simple-Shell, follow these steps:
 ```
-$ sudo apt install libreadline-dev
-$ gcc shell.c -lreadline -o shell
+$ sudo apt install libreadline-dev make
+$ make
 $ ./shell
 ```
 ## How to Contribute?

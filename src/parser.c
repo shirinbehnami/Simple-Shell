@@ -1,15 +1,15 @@
-#include<stdio.h> 
-#include<string.h> 
-#include<stdlib.h> 
+#include <stdio.h> 
+#include <string.h> 
+#include <stdlib.h> 
+#include "parser.h"
 
-#define MAXCOM 1000 // Max number of letters to be supported 
-#define MAXLIST 100 // Max number of commands to be supported 
 
-// Function for finding pipe 
+
 int parsePipe(char* str, char** strpiped) 
 { 
 	int i; 
 	for (i = 0; i < 2; i++) { 
+		strpiped[i] = NULL;
 		strpiped[i] = strsep(&str, "|"); 
 		if (strpiped[i] == NULL) 
 			break; 
@@ -22,7 +22,6 @@ int parsePipe(char* str, char** strpiped)
 	} 
 } 
 
-// Function for parsing command words 
 void parseSpace(char* str, char** parsed) 
 { 
 	int i; 
