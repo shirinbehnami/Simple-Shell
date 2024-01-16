@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_COMMAND_LENGTH 1024
 // Clearing the shell 
 #define clear() printf("\033[H\033[J") 
 
@@ -57,7 +60,7 @@ void openHelp()
 // Function to execute builtin commands 
 int ownCmdHandler(char** parsed) 
 { 
-	int NoOfOwnCmds = 4, i, switchOwnArg = 0; 
+	int NoOfOwnCmds = 5, i, switchOwnArg = 0; 
 	char* ListOfOwnCmds[NoOfOwnCmds]; 
 	char* username; 
 

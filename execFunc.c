@@ -5,23 +5,56 @@
 #include<sys/types.h> 
 #include<sys/wait.h> 
 
+void executeCommand(char *command) {
+    pid_t pid = fork();
+
+    if (pid == -1) {
+        perror("fork");
+    } else if (pid == 0) {
+        execlp(command, command, (char *) NULL);
+        exit(0);
+    }
+    
+}
+
+int getLength(char **array) {
+    int len = 0;
+    while (array[len] != NULL) {
+        len++;
+    }
+    return len;
+}
+
 // Function where the system command is executed 
 void execArgs(char** parsed) 
 { 
-	pid_t pid = fork(); 
+	int length = getLength(parsed);
+    	if (length > 2 && strcmp(parsed[1], "&") == 0) {
 
-	if (pid == -1) { 
-		printf("\nFailed forking child.."); 
-		return; 
-	} else if (pid == 0) { 
-		if (execvp(parsed[0], parsed) < 0) { 
-			printf("\nCould not execute command.."); 
+		for (int i = 0; i < length; i++) {
+		    if(parsed[i]!="&") {
+		    	executeCommand(parsed[i]);
+		    }
+		}
+		while(wait(NULL)>0);
+
+	}
+	else {
+		pid_t pid = fork(); 
+
+		if (pid == -1) { 
+			printf("\nFailed forking child.."); 
+			return; 
+		} else if (pid == 0) { 
+			if (execvp(parsed[0], parsed) < 0) { 
+				printf("\nCould not execute command.."); 
+			} 
+			exit(0); 
+		} else {
+			wait(NULL); 
+			return; 
 		} 
-		exit(0); 
-	} else {
-		wait(NULL); 
-		return; 
-	} 
+	}
 } 
 
 // Function where the piped system commands is executed 
