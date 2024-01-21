@@ -60,7 +60,7 @@ void openHelp()
 // Function to execute builtin commands 
 int ownCmdHandler(char** parsed) 
 { 
-	int NoOfOwnCmds = 5, i, switchOwnArg = 0; 
+	int NoOfOwnCmds = 4, i, switchOwnArg = 0; 
 	char* ListOfOwnCmds[NoOfOwnCmds]; 
 	char* username; 
 

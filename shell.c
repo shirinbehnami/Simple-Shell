@@ -34,16 +34,13 @@ int main()
 	char* parsedArgsPiped[MAXLIST]; 
 	int execFlag = 0; 
 	init_shell(); 
-	printf("37\n");
 	while (1) { 
 		printDir(); 
-		printf("40\n");
 		if (takeInput(inputString)) 
 			continue; 
 		execFlag = processString(inputString, 
 		parsedArgs, parsedArgsPiped);  
-		printf("45\n");
- 
+
 
 		// Execute 
 		if (execFlag == 1) {
