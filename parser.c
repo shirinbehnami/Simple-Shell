@@ -22,6 +22,26 @@ int parsePipe(char* str, char** strpiped)
 	} 
 } 
 
+// Function for finding redirect 
+int parseRedir(char* str, char** strredir){
+	int i; 
+	for (i = 0; i < 2; i++) { 
+		strredir[i] = strsep(&str, ">"); 
+
+		if (strredir[i] == NULL) 
+			break; 
+	} 
+	if(strredir[1]){
+		strredir[1] = strredir[1]+1;
+	}
+
+	if (strredir[1] == NULL) 
+		return 0; 
+	else { 
+		return 2; 
+	} 
+}
+
 // Function for parsing command words 
 void parseSpace(char* str, char** parsed) 
 { 
@@ -36,3 +56,4 @@ void parseSpace(char* str, char** parsed)
 			i--; 
 	} 
 }
+

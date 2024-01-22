@@ -7,7 +7,8 @@
 
 // Function where the system command is executed 
 void execArgs(char** parsed) 
-{ 
+{
+     
 	pid_t pid = fork(); 
 
 	if (pid == -1) { 
