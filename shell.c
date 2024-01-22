@@ -12,8 +12,9 @@ int processString(char* str, char** parsed, char** parsedpipe, FILE* file)
 	char* strpiped[2], * strredir[2]; 
 	int piped = 0, redir = 0; 
 	char str1[MAXCOM]; 
-	//strcpy(str1,str); 
-	redir = parseRedir(str, strredir); 
+	redir = parseRedirW(str, strredir); 
+	printf("%d\n",redir);
+
 
 	piped = parsePipe(strredir[0], strpiped); 
 
@@ -25,9 +26,19 @@ int processString(char* str, char** parsed, char** parsedpipe, FILE* file)
 		parseSpace(strredir[0], parsed); 
 	} 
 
-	if(redir){
+	if(redir==2){
+		printf("redir2");
 		char* filename = strredir[1];
 		file = freopen(filename, "w", stdout);
+		if (file == NULL) {
+			perror("Error opening file");
+			return 1;
+		}
+	}
+	else if(redir==4){
+		printf("redir4");
+		char* filename = strredir[1];
+		file = freopen(filename, "a", stdout);
 		if (file == NULL) {
 			perror("Error opening file");
 			return 1;
@@ -60,22 +71,19 @@ int main()
 		if (execFlag == 1) 
 			execArgs(parsedArgs); 
 
-		if (execFlag == 2) 
+		else if (execFlag == 2) 
 			execArgsPiped(parsedArgs, parsedArgsPiped); 
 
-		if (execFlag == 3){
+		else if (execFlag == 3 | execFlag == 5){
 			execArgs(parsedArgs); 
 			freopen("/dev/tty", "w", stdout);
-
-
 		}
 
-		if (execFlag == 4){
+		else if (execFlag == 4 | execFlag == 6){
 			execArgsPiped(parsedArgs, parsedArgsPiped); 
 			freopen("/dev/tty", "w", stdout);
 		}
 
-			
 	} 
 	return 0; 
 } 
