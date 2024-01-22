@@ -23,16 +23,17 @@ int parsePipe(char* str, char** strpiped)
 } 
 
 // Function for finding redirect by overwriting
-int parseRedirW(char* str, char** strredir){
+int parseRedir(char* str, char** strredir){
 	int flag = 1; 
 	strredir[0] = strsep(&str, ">");
 	strredir[1] = strsep(&str, ">"); 
+
+	//check for >>
 	if(strredir[1] && strredir[1][0]=='\0'){
 		strredir[1] = strsep(&str, ">"); 
 		flag = 2;
-
 	}
-	//printf("%s\n%s\n",strredir[0],strredir[1]);
+	
 	if(strredir[1]){
 		//remove space before and after it
 		while(isspace(strredir[1][0]))
@@ -44,25 +45,6 @@ int parseRedirW(char* str, char** strredir){
 	}
 	return 0;
 }
-
-// Function for finding redirect by appending
-int parseRedirA(char* str, char** strredir){
-	int i; 
-	strredir[0] = strtok(str, ">>"); 
-	strredir[1] = strtok(NULL, ">>"); 
-	printf("%s\n%s\n",strredir[0],strredir[1]);
-	if(strredir[1]){
-		//remove space before and after it
-		while(isspace(strredir[1][0]))
-			strredir[1] = strredir[1]+1;
-		i = 0;
-		while(!isspace(strredir[1][++i]));
-		strredir[1][i]='\0';
-		return 4;
-	}
-	return 0;
-}
-
 
 // Function for parsing command words 
 void parseSpace(char* str, char** parsed) 

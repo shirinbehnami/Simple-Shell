@@ -11,10 +11,8 @@ int processString(char* str, char** parsed, char** parsedpipe, FILE* file)
 
 	char* strpiped[2], * strredir[2]; 
 	int piped = 0, redir = 0; 
-	char str1[MAXCOM]; 
-	redir = parseRedirW(str, strredir); 
-	printf("%d\n",redir);
 
+	redir = parseRedir(str, strredir); 
 
 	piped = parsePipe(strredir[0], strpiped); 
 
@@ -26,8 +24,8 @@ int processString(char* str, char** parsed, char** parsedpipe, FILE* file)
 		parseSpace(strredir[0], parsed); 
 	} 
 
+	// > operator
 	if(redir==2){
-		printf("redir2");
 		char* filename = strredir[1];
 		file = freopen(filename, "w", stdout);
 		if (file == NULL) {
@@ -35,8 +33,9 @@ int processString(char* str, char** parsed, char** parsedpipe, FILE* file)
 			return 1;
 		}
 	}
+
+	// >> operator
 	else if(redir==4){
-		printf("redir4");
 		char* filename = strredir[1];
 		file = freopen(filename, "a", stdout);
 		if (file == NULL) {
