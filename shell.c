@@ -21,7 +21,7 @@ int processString(char* str, char** parsed, char** parsedpipe)
 	} else { 
 		parseSpace(str, parsed); 
 	} 
-	printf("24\n");
+	//printf("24\n");
 	if (ownCmdHandler(parsed)) 
 		return 0; 
 	else
