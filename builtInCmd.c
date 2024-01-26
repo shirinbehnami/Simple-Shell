@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_COMMAND_LENGTH 1024
 // Clearing the shell 
 #define clear() printf("\033[H\033[J") 
 
